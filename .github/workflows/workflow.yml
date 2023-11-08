@@ -1,0 +1,18 @@
+name:  Bene Collect Dashboard UI Dev Env
+on:
+  workflow_dispatch:
+jobs:
+  primary:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+      - name: install dependencies
+        run: npm install
+      - name: build
+        run: CI=false npm run build
+      - name: aws deploy
+        run: BUILD_DIRECTORY=build BUCKET_NAME=${{ secrets.BUCKET_NAME }} ACCESS_KEY_ID=${{ secrets.ACCESS_KEY_ID }} SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS_KEY }} npm run deploy-aws
