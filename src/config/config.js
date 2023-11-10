@@ -3,7 +3,7 @@ import {Environment} from "../enum/common.enum";
 
 export class config {
 
-    static env = Environment.prod;
+    static env = Environment.dev;
 
     static version = {
         majorRevision: 1,  // (new UI, lots of new features, conceptual change, etc.)
